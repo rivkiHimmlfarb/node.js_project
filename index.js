@@ -5,6 +5,8 @@ const chalk = require('chalk');
 const app = express();
 const PORT = 3000;
 
+app.use(express.json()); // חובה לקריאת JSON מה-body
+
 
 // ייבוא המידע מהקובץ הסמוך
 const  students  = require('./students.js'); // ייבוא המידע מהקובץ students.js
@@ -43,4 +45,60 @@ app.get('/students', (req, res) => {
 // 4. הפעלת שרת האקספרס
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}/`);
+});
+
+app.get('/courses/:id', (req, res) => {
+    const courseId = parseInt(req.params.id);
+    const course = courses.find(c => c.id === courseId);
+    if (course) {
+        res.json(course);
+    } else {
+        res.status(404).json({ error: 'Course not found' });
+    }
+})
+
+app.get('/courses/',(req, res) => {
+    res.json(courses);
+});
+app.post('/courses', (req, res) => {
+    const nextId = courses.length > 0  
+        ? Math.max(...courses.map(c => c.id)) + 1  
+        : 1;
+
+    const newCourse = {
+        id: nextId, // כאן נשתמש ב-ID הבטוח שחישבנו
+        name: req.body.name,
+        price: req.body.price
+    };
+    
+    courses.push(newCourse);
+    res.status(201).json(newCourse);
+});
+
+app.put('/courses/:id', (req, res) => {
+    const courseId = parseInt(req.params.id);
+    const courseIndex = courses.findIndex(c => c.id === courseId);
+    if (courseIndex !== -1) {       
+        courses[courseIndex] = {
+            id: courseId,
+            name: req.body.name,
+            price: req.body.price
+        };
+        res.json(courses[courseIndex]);
+    }
+    else {
+        res.status(404).json({ error: 'Course not found' });
+    }
+});
+
+app.delete('/courses/:id', (req, res) => {
+    const courseId = parseInt(req.params.id);
+    const courseIndex = courses.findIndex(c => c.id === courseId);
+    
+    if (courseIndex === -1) {
+        return res.status(404).json({ error: 'Course not found' });
+    }
+
+    const deletedCourse = courses.splice(courseIndex, 1);
+    res.json(deletedCourse[0]);
 });
