@@ -4,4 +4,4 @@ const courses = [
     { id: 3, name: 'Angular', price: 340 },
     { id: 4, name: 'javaScript', price: 500 }
 ];
-module.exports = courses;
+export default courses;

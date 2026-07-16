@@ -5,4 +5,4 @@ const students = [
     { id: 4, name: 'Emily Davis', age: 23 }
 ];
 
-module.exports = students;
+export default students;
