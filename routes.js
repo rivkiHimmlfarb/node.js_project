@@ -1,6 +1,7 @@
 import express from 'express';
 import {getData,addData,getCourser,get1course,getStudents,updateData,deleteData} from './controller.js';
 const router = express.Router();
+import authenticateKey from './middleware.js';
 
 router.get('/', getData); 
 router.get('/courses', getCourser);
