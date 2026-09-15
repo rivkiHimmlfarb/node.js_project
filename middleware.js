@@ -1,5 +1,5 @@
 // מפתח הגישה הסודי ששמור בשרת
-const SECRET_API_KEY = 'my-secret-123';
+const SECRET_API_KEY = process.env.SECRET_API_KEY || 'your-secret-api-key-here';
 
 const authenticateKey = (req, res, next) => {
   // שליפת המפתח מכותרות הבקשה
