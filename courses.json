@@ -1,0 +1,45 @@
+[
+  {
+    "id": 1,
+    "name": "Node.js",
+    "price": 100
+  },
+  {
+    "id": 2,
+    "name": "react",
+    "price": 200
+  },
+  {
+    "id": 3,
+    "name": "Angular",
+    "price": 340
+  },
+  {
+    "id": 4,
+    "name": "javaScript",
+    "price": 500
+  },
+  {
+    "id": 5,
+    "name": "c#",
+    "price": 150
+  },
+  {
+    "id": 6,
+    "name": "Node.js Course",
+    "price": 150
+  },
+  {
+    "id": 7,
+    "name": "Node.js Course",
+    "price": 150
+  },
+  {
+    "id": 8
+  },
+  {
+    "id": 9,
+    "name": "algorithms",
+    "price": 222
+  }
+]
